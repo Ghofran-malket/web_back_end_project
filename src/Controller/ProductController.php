@@ -49,8 +49,15 @@ class ProductController extends AbstractController
     }
 
     #[Route('/{id}', name:'edit', methods:'PUT')]
-    public function edit(): Response{
-        return $this->json(['message' => "edit product"]);
+    public function edit(int $id): Response{
+        $product = $this->repository->findOneBy(['id'=>$id]);
+        if(!$product){
+            throw $this->createNotFoundException("No Product found for {$id} id");
+        }
+        $product->setTitle('Product 1');
+        $this->manager->flush();
+
+        return $this->redirectToRoute('product_show');
     }
 
     #[Route('/{id}', name:'delete', methods:'DELETE')]
