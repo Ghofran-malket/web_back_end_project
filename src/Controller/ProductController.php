@@ -7,17 +7,29 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\product;
+use DateTimeImmutable;
+use Doctrine\ORM\EntityManagerInterface;
 
 #[Route('/product', name: 'gephora_product_')]
 class ProductController extends AbstractController
 {
-    public function __construct(private ProductRepository $repository)
+    public function __construct(private ProductRepository $repository, private EntityManagerInterface $manager)
     {
     }
 
-    #[Route('/{id}', name:'create', methods:'POST')]
+    #[Route('/', name:'create', methods:'POST')]
     public function create(): Response{
-        return $this->json(['message' => "create product"]);
+        $product = new Product();
+        $product->setTitle('Product 1');
+        $product->setDescription('description');
+        $product->setPrice('30');
+        $product->setImage('image');
+
+        $product->setCreatedAt(new DateTimeImmutable());
+        $this->manager->persist($product);
+        $this->manager->flush();
+
+        return $this->json(['message' => "create product"], Response::HTTP_CREATED);
     }
 
     #[Route('/', name: 'show', methods:'GET')]
