@@ -61,7 +61,14 @@ class ProductController extends AbstractController
     }
 
     #[Route('/{id}', name:'delete', methods:'DELETE')]
-    public function delete(): Response{
-        return $this->json(['message' => "delete product"]);
+    public function delete(int $id): Response{
+        $product = $this->repository->findOneBy(['id'=>$id]);
+        if(!$product){
+            throw $this->createNotFoundException("No Product found for {$id} id");
+        }
+        $this->manager->remove($product);
+        $this->manager->flush();
+
+        return $this->json(['message' => "Product resource deleted"], Response::HTTP_NO_CONTENT);
     }
 }
