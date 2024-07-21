@@ -15,6 +15,11 @@ class ProductController extends AbstractController
     {
     }
 
+    #[Route('/{id}', name:'create', methods:'POST')]
+    public function create(): Response{
+        return $this->json(['message' => "create product"]);
+    }
+
     #[Route('/', name: 'show', methods:'GET')]
     public function show(): Response
     {
@@ -31,4 +36,13 @@ class ProductController extends AbstractController
         return $this->json(['message' => "the number of products, found :" . count($product)]);
     }
 
+    #[Route('/{id}', name:'edit', methods:'PUT')]
+    public function edit(): Response{
+        return $this->json(['message' => "edit product"]);
+    }
+
+    #[Route('/{id}', name:'delete', methods:'DELETE')]
+    public function delete(): Response{
+        return $this->json(['message' => "delete product"]);
+    }
 }
