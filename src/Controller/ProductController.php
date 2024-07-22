@@ -33,19 +33,18 @@ class ProductController extends AbstractController
     }
 
     #[Route('/', name: 'show', methods:'GET')]
-    public function show(): Response
+    public function show()
     {
-        $product = $this->repository->findAll();
-        if($product == null){
-            return $this->json(
-                ['message' => "No Content found"],
-                Response::HTTP_NO_CONTENT
-            );
+        $products = $this->repository->findBy(
+            array(),
+            array('id' => 'ASC'),
+            4,
+            0
+        );
+        if($products == null){
+            return null;
         }
-        foreach ($product as $x) {
-            echo "A Product was, found : {$x->getTitle()} for {$x->getId()} id";
-        }
-        return $this->json(['message' => "the number of products, found :" . count($product)]);
+        return $products;
     }
 
     #[Route('/{id}', name:'edit', methods:'PUT')]

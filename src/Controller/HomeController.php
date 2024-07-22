@@ -8,11 +8,15 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
+    public function __construct(private ProductController $productController) {
+    }
+
     #[Route('/home', name: 'gephora_home')]
     public function index(): Response
     {
-        return $this->render('base.html.twig', [
-            'controller_name' => 'HomeController',
+        $products = $this->productController->show();
+        return $this->render('home/index.html.twig', [
+            'products' => $products,
         ]);
     }
 }
