@@ -37,7 +37,7 @@
         <div class="container p-4">
             <h1 class="text-center text-primary">Notre Selection</h1>
             <div class="row row-cols-lg-4 row-cols-sm-2 align-items-center mt-4 g-5">
-                {% for product in products %}
+                {% for product in products_notre_selection %}
                     <div class="col text-center">
                         <img src="{{ product.image }}" class="rounded-circle image-size" alt="article 1">
                         <h3 class="text-white">{{ product.title }}</h3>
@@ -56,31 +56,14 @@
         <div class="container p-4">
             <h1 class="text-center text-primary">Dernières tendances</h1>
             <div class="row row-cols-lg-4 row-cols-sm-2 align-items-center mt-4 g-5">
-                <div class="col text-center">
-                    <img src="/images/article-3.jpg" class="rounded-circle image-size" alt="article 1">
-                    <h3 class="text-white">Mascara</h3>
-                    <h4 class="text-primary pb-2">33.45$</h4>
-                    <button class="btn btn-primary">Découvrir</button>
-                </div>
-                <div class="col text-center">
-                    <img src="/images/article-4.jpg" class="rounded-circle image-size" alt="article 1">
-                    <h3 class="text-white">Mascara</h3>
-                    <h4 class="text-primary pb-2">33.45$</h4>
-                    <button class="btn btn-primary">Découvrir</button>
-                </div>
-                <div class="col text-center">
-                    <img src="/images/article-5.jpg" class="rounded-circle image-size" alt="article 1">
-                    <h3 class="text-white">Mascara</h3>
-                    <h4 class="text-primary pb-2">33.45$</h4>
-                    <button class="btn btn-primary">Découvrir</button>
-                </div>
-                <div class="col text-center">
-                    <img src="/images/article-6.jpg" class="rounded-circle image-size" alt="article 1">
-                    <h3 class="text-white">Mascara</h3>
-                    <h4 class="text-primary pb-2">33.45$</h4>
-                    <button class="btn btn-primary">Découvrir</button>
-                </div>
-
+                {% for product in products_tendane %}
+                    <div class="col text-center">
+                        <img src="{{ product.image }}" class="rounded-circle image-size" alt="article 1">
+                        <h3 class="text-white">{{ product.title }}</h3>
+                        <h4 class="text-primary pb-2">{{ product.price }}$</h4>
+                        <button class="btn btn-primary">Découvrir</button>
+                    </div>
+                {% endfor %}
             </div>
             <div class="text-end my-3">
                 <a href="/" class="text-primary">voir tous les produits</a>
@@ -92,39 +75,16 @@
         <div class="container p-4">
             <h1 class="text-center text-primary">Offre fidélité</h1>
             <div class="row row-cols-lg-4 row-cols-sm-2 align-items-center mt-4 g-5">
-                <div class="col text-center">
-                    <img src="/images/article-7.jpg" class="rounded-circle image-size" alt="article 1">
-                    <h3 class="text-white">Mascara</h3>
-                    <h4 class="text-primary pb-2">Prix d'origine : <span
-                            class="text-decoration-line-through">135,00€</span> <strog>-25%</strog>
-                    </h4>
-                    <button class="btn btn-primary">Découvrir</button>
-                </div>
-                <div class="col text-center">
-                    <img src="/images/article-3.jpg" class="rounded-circle image-size" alt="article 1">
-                    <h3 class="text-white">Mascara</h3>
-                    <h4 class="text-primary pb-2">Prix d'origine : <span
-                            class="text-decoration-line-through">135,00€</span> <strog>-25%</strog>
-                    </h4>
-                    <button class="btn btn-primary">Découvrir</button>
-                </div>
-                <div class="col text-center">
-                    <img src="/images/article-5.jpg" class="rounded-circle image-size" alt="article 1">
-                    <h3 class="text-white">Mascara</h3>
-                    <h4 class="text-primary pb-2">Prix d'origine : <span
-                            class="text-decoration-line-through">135,00€</span> <strog>-25%</strog>
-                    </h4>
-                    <button class="btn btn-primary">Découvrir</button>
-                </div>
-                <div class="col text-center">
-                    <img src="/images/article-6.jpg" class="rounded-circle image-size" alt="article 1">
-                    <h3 class="text-white">Mascara</h3>
-                    <h4 class="text-primary pb-2">Prix d'origine : <span
-                            class="text-decoration-line-through">135,00€</span> <strog>-25%</strog>
-                    </h4>
-                    <button class="btn btn-primary">Découvrir</button>
-                </div>
-
+                {% for product in products_offre %}
+                    <div class="col text-center">
+                        <img src="{{ product.image }}" class="rounded-circle image-size" alt="article 1">
+                        <h3 class="text-white">{{ product.title }}</h3>
+                        <h4 class="text-primary pb-2">Prix d'origine : <span
+                                class="text-decoration-line-through">135,00€</span> <strog>-25%</strog>
+                        </h4>
+                        <button class="btn btn-primary">Découvrir</button>
+                    </div>
+                {% endfor %}
             </div>
             <div class="text-end my-3">
                 <a href="/" class="text-dark">voir tous les produits</a>

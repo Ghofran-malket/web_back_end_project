@@ -47,6 +47,16 @@ class ProductController extends AbstractController
         return $products;
     }
 
+    #[Route('/', name: 'show_by_category', methods:'GET')]
+    public function showByCategory(String $category)
+    {
+        $products = $this->repository->findByCategoryTitle($category);
+        if($products == null){
+            return null;
+        }
+        return $products;
+    }
+
     #[Route('/{id}', name:'edit', methods:'PUT')]
     public function edit(int $id): Response{
         $product = $this->repository->findOneBy(['id'=>$id]);

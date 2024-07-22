@@ -14,9 +14,13 @@ class HomeController extends AbstractController
     #[Route('/home', name: 'gephora_home')]
     public function index(): Response
     {
-        $products = $this->productController->show();
+        $products_notre_selection = $this->productController->showByCategory('Notre Selection');
+        $products_tendane = $this->productController->showByCategory('Tendance');
+        $products_offre = $this->productController->showByCategory('Offre');
         return $this->render('home/index.html.twig', [
-            'products' => $products,
+            'products_notre_selection' => $products_notre_selection,
+            'products_tendane' => $products_tendane,
+            'products_offre' => $products_offre
         ]);
     }
 }
